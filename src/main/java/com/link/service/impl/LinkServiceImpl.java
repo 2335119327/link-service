@@ -312,8 +312,8 @@ public class LinkServiceImpl implements LinkService {
 
 		// 删除redis缓存
 		RKeys keys = redissonClient.getKeys();
-		keys.delete(shortLinkSet.toArray(new String[]{}));
-		keys.delete(longLinkSet.toArray(new String[]{}));
+		keys.unlink(shortLinkSet.toArray(new String[0]));
+		keys.unlink(longLinkSet.toArray(new String[0]));
 	}
 
 	@Override
