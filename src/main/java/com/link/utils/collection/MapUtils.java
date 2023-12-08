@@ -1,4 +1,4 @@
-package com.link.utils;
+package com.link.utils.collection;
 
 
 import java.util.*;

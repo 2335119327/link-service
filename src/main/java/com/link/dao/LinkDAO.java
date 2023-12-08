@@ -19,4 +19,17 @@ public interface LinkDAO extends BaseMapper<LinkDO> {
 	 */
 	void updateStatusByIdList(@Param("status") Integer status, @Param("idList") List<Long> idList);
 
+	/**
+	 * 分页查询过期的link
+	 */
+	List<LinkDO> pageExpireLink(@Param("maxId") Long maxId,
+								@Param("limitVal") Integer limitVal,
+	                            @Param("shardIndex") int shardIndex,
+	                            @Param("shardTotal") int shardTotal);
+
+	/**
+	 * updateByShortSuffix
+	 */
+	void updateByShortSuffix(LinkDO linkDO);
+
 }

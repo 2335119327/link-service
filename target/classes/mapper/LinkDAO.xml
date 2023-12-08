@@ -10,4 +10,14 @@
         </foreach>
     </update>
 
+    <select id="pageExpireLink" resultType="com.link.model.entity.LinkDO">
+        select *
+        from link
+        where expire_time > now()
+          and id > #{maxId}
+          and id % #{shardTotal} = #{shardIndex}
+        order by id asc
+            limit #{limitVal}
+    </select>
+
 </mapper>

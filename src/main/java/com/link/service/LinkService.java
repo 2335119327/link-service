@@ -1,5 +1,6 @@
 package com.link.service;
 
+import com.link.model.entity.LinkDO;
 import com.link.model.vo.delete.DeleteShortLinkRequestVO;
 import com.link.model.vo.delete.DeleteShortLinkResponseVO;
 import com.link.model.vo.create.GenerateShortLinkRequestVO;
@@ -8,6 +9,7 @@ import com.link.model.vo.update.UpdateLinkRequestVO;
 import com.link.model.vo.update.UpdateLinkResponseVO;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author : wangaidong
@@ -44,5 +46,10 @@ public interface LinkService {
 	 * 更新link
 	 */
 	UpdateLinkResponseVO updateLink(UpdateLinkRequestVO request);
+
+	/**
+	 * 批量删除
+	 */
+	void asyncBatchRemoveShortLinkCache(List<LinkDO> linkDOList);
 
 }

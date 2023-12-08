@@ -10,4 +10,28 @@
         </foreach>
     </update>
 
+    <update id="updateByShortSuffix">
+        update link set update_time = now()
+        <if test="status != null">
+            status = #{status}
+        </if>
+        <if test="expireTime != null">
+            expire_time = #{expireTime}
+        </if>
+        <if test="longLink != null">
+            long_link = #{longLink}
+        </if>
+        where short_suffix = #{shortSuffix}
+    </update>
+
+    <select id="pageExpireLink" resultType="com.link.model.entity.LinkDO">
+        select id, short_suffix, long_link
+        from link
+        where expire_time > now()
+          and id > #{maxId}
+          and id % #{shardTotal} = #{shardIndex}
+        order by id asc
+            limit #{limitVal}
+    </select>
+
 </mapper>

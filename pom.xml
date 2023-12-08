@@ -24,9 +24,16 @@
         <aspectjweaver.version>1.9.19</aspectjweaver.version>
         <roaringBitmap.version>0.9.44</roaringBitmap.version>
         <guava.version>31.1-jre</guava.version>
+        <xxl.job.core.version>2.3.1</xxl.job.core.version>
     </properties>
 
     <dependencies>
+
+        <dependency>
+            <groupId>com.xuxueli</groupId>
+            <artifactId>xxl-job-core</artifactId>
+            <version>${xxl.job.core.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>org.aspectj</groupId>

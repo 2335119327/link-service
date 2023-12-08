@@ -21,7 +21,7 @@ import com.link.model.vo.update.UpdateLinkRequestVO;
 import com.link.model.vo.update.UpdateLinkResponseVO;
 import com.link.service.LinkService;
 import com.link.utils.LinkAssert;
-import com.link.utils.ListUtil;
+import com.link.utils.collection.ListUtil;
 import com.link.utils.Pair;
 import com.link.utils.ShortLinkUtil;
 import com.link.utils.convert.ConvertUtil;
@@ -282,7 +282,8 @@ public class LinkServiceImpl implements LinkService {
 		return response;
 	}
 
-	private void asyncBatchRemoveShortLinkCache(List<LinkDO> linkDOList) {
+	@Override
+	public void asyncBatchRemoveShortLinkCache(List<LinkDO> linkDOList) {
 		// 异步删缓存
 		CompletableFuture.runAsync(() -> {
 			// 删缓存
@@ -297,7 +298,7 @@ public class LinkServiceImpl implements LinkService {
 		});
 	}
 
-	private void batchRemoveShortLinkCache(List<LinkDO> linkDOList) {
+	public void batchRemoveShortLinkCache(List<LinkDO> linkDOList) {
 		Set<String> shortLinkSet = new HashSet<>(linkDOList.size());
 		Set<String> longLinkSet = new HashSet<>(linkDOList.size());
 		for (LinkDO linkDO : linkDOList) {
@@ -334,7 +335,7 @@ public class LinkServiceImpl implements LinkService {
 			try {
 				LinkDO linkDO = ConvertUtil.linkVoConvertToLinDo(linkVO);
 				// 更新数据库
-				linkDAO.update(linkDO, new LambdaQueryWrapper<LinkDO>().eq(LinkDO::getShortSuffix, linkVO.getShortSuffix()));
+				linkDAO.updateByShortSuffix(linkDO);
 
 				// 删缓存
 				asyncBatchRemoveShortLinkCache(ListUtil.newArrayList(linkDO));

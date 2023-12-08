@@ -2,10 +2,9 @@ package com.link.model.listener;
 
 import com.alibaba.fastjson.JSONObject;
 import com.github.benmanes.caffeine.cache.Cache;
-import com.link.constants.constant.LinkConstant;
 import com.link.constants.constant.RedisConstant;
 import com.link.model.bo.CacheLinkBO;
-import com.link.utils.MapUtils;
+import com.link.utils.collection.MapUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.collections4.CollectionUtils;
 import org.redisson.api.*;

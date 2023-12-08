@@ -23,19 +23,10 @@ public class ConvertUtil {
 
 	public static LinkDO linkVoConvertToLinDo(LinkVO linkVO) {
 		LinkDO linkDO = new LinkDO();
-		if (linkVO.getStatus() != null) {
-			linkDO.setStatus(linkVO.getStatus());
-		}
-
-		if (linkVO.getLongLink() != null) {
-			linkDO.setLongLink(linkVO.getLongLink());
-		}
-
-		if (linkVO.getExpireTime() != null) {
-			linkDO.setExpireTime(linkVO.getExpireTime());
-		}
-
-		linkDO.setUpdateTime(LocalDateTime.now());
+		linkDO.setStatus(linkVO.getStatus());
+		linkDO.setExpireTime(linkVO.getExpireTime());
+		linkDO.setLongLink(linkVO.getLongLink());
+		linkDO.setShortSuffix(linkVO.getShortSuffix());
 		return linkDO;
 	}
 
